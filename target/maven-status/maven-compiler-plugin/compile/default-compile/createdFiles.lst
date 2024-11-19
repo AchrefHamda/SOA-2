@@ -1,0 +1,4 @@
+com\rsexemplenet\controllers\StudentController.class
+com\rsexemplenet\services\StudentRepository.class
+com\rsexemplenet\models\Student.class
+com\rsexemplenet\config\ApplicationConfig.class

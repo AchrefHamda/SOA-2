@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Students</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <ul id="students"></ul>
+
+    <form id="addStudentForm">
+        <input type="text" name="num" placeholder="Numéro">
+        <input type="text" name="nomComplet" placeholder="Nom Complet">
+        <input type="text" name="sexe" placeholder="Sexe">
+        <input type="text" name="specialite" placeholder="Spécialité">
+        <input type="text" name="niveau" placeholder="Niveau">
+        <button type="button" id="addStudent">Add</button>
+    </form>
+
+    <script>
+        $(function () {
+            $.get('/api/student', function (data) {
+                data.forEach(student => {
+                    $('#students').append(`<li>${student.nomComplet}</li>`);
+                });
+            });
+
+            $('#addStudent').click(function () {
+                const formData = $('#addStudentForm').serialize();
+                $.post('/api/student', formData, function (student) {
+                    $('#students').append(`<li>${student.nomComplet}</li>`);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
